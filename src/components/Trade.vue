@@ -190,6 +190,8 @@ export default {
             return Math.round(this.loadedTrades.length / this.total_trades * 100);
         },
         filteredTrades: function() {
+            const TRADE_NAME_LIMIT = 25;
+
             //Convert values
             let sortedtrades = this.trades.map((t) => {
                 t.id = parseInt(t.id);
@@ -197,6 +199,7 @@ export default {
                 t.received = parseFloat(t.received);
                 t.sent = parseFloat(t.sent);
                 t.finished_at = moment(t.finished_at).format('YYYY-MM-DD');
+                t.name = t.name.length <= TRADE_NAME_LIMIT? t.name : t.name.substring(0, TRADE_NAME_LIMIT) + '...';
             });
             sortedtrades = _.sortBy(this.trades, [this.sort]);
             return (this.order == 'asc')? sortedtrades : sortedtrades.reverse();
