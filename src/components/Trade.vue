@@ -18,7 +18,7 @@
                             :aria-valuenow="progression"
                             aria-valuemin="0"
                             aria-valuemax="100"
-                            :style="'width: '+progression+'%'"
+                            :style="'min-width: 30px; width: '+progression+'%'"
                         >
                         {{ progression }}%
                         </div>
