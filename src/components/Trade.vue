@@ -91,6 +91,7 @@
                         <tr v-for="trade in filteredTrades" v-if="!trade.loading" :class="{
                             'alert-success': trade.balance > 0,
                             'alert-danger': trade.balance < 0,
+                            'alert-primary': trade.balance == 0,
                         }">
                             <td scope="row">
                                 <a :href="'https://deckbox.org/trades/'+trade.id" target="_blank">
