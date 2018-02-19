@@ -155,7 +155,7 @@ const FINISHED_MAIL_TRADES_SELECTOR = '.trades_listing.bordered_table:first';
 
 function parsePrice(price) {
     if (!price) {
-        return null;
+        return 0;
     }
     return parseFloat(price.replace('$', '')).toFixed(2);
 }
