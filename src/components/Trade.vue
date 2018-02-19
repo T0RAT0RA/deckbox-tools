@@ -150,6 +150,8 @@ const cache = require('lscache');
 const cors_proxy = 'https://cors-anywhere.herokuapp.com/';
 const deckbox_url = 'deckbox.org';
 
+const FINISHED_MAIL_TRADES_SELECTOR = '.trades_listing.bordered_table:first';
+
 function parsePrice(price) {
     if (!price) {
         return null;
@@ -232,7 +234,7 @@ export default {
             this.sort = col;
         },
         parseTrades: function(html) {
-            const finished_trades = html.find('.trades_listing:first');
+            const finished_trades = html.find(FINISHED_MAIL_TRADES_SELECTOR);
             const trades = finished_trades.find('.simple_table tr:gt(0)');
             trades.each((i, el) => {
                 const $trade = $(el);
@@ -285,7 +287,7 @@ export default {
                 .get(`${cors_proxy}${deckbox_url}/users/${this.username}/trades/`)
                 .end((err, res) => {
                     const html = $(res.text);
-                    const finished_trades = html.find('.trades_listing:first');
+                    const finished_trades = html.find(FINISHED_MAIL_TRADES_SELECTOR);
 
                     if (!finished_trades.length) {
                         this.no_trades = true;
